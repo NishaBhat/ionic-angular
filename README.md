@@ -8,4 +8,4 @@ This is a project built with Ionic5 and Angular8
 
 # Execution
 
-`ionic serve`
+`npm start`
