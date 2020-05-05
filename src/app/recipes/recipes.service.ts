@@ -21,7 +21,7 @@ export class RecipesService {
       ingredients: ["Onions", "Chicken", "Celery", "Groundnuts", "Soy Sauce"],
     },
     {
-      id: "r2",
+      id: "r3",
       title: "Bok Choy",
       imageUrl:
         "https://upload.wikimedia.org/wikipedia/commons/5/58/Bok_Choy.JPG",
@@ -35,5 +35,8 @@ export class RecipesService {
 
   getRecipe(recipeId) {
     return { ...this.recipes.find((e) => e.id === recipeId) };
+  }
+  deleteRecipe(recipeId: string) {
+    this.recipes = this.recipes.filter((e) => e.id != recipeId);
   }
 }
