@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Recipe } from "./recipe.model";
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class RecipesService {
+  recipiesObj = new Subject();
   private recipes: Recipe[] = [
     {
       id: "r1",
@@ -29,8 +31,9 @@ export class RecipesService {
     },
   ];
   constructor() {}
-  getAllRecipes() {
-    return [...this.recipes];
+  publishRecipes() {
+    //return [...this.recipes];
+    this.recipiesObj.next([...this.recipes]);
   }
 
   getRecipe(recipeId) {
@@ -38,5 +41,6 @@ export class RecipesService {
   }
   deleteRecipe(recipeId: string) {
     this.recipes = this.recipes.filter((e) => e.id != recipeId);
+    this.publishRecipes();
   }
 }
